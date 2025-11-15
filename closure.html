@@ -1,0 +1,62 @@
+<script>
+    //A closure is the combination of a function object and the lexical environment in which it was declared. 
+
+    // That environment captures references to variables from outer scopes, allowing the inner function to access and preserve those variables even after the outer function has finished executing. 
+    
+    //this means that a closure gives you access to an outer function's scope from an inner function.
+
+   //example 1
+    function createCounter(){
+    let count = 0; // variable in the outer function's scope
+        function increment(){
+            count++; // inner function accessing the outer function's variable
+            return count;
+        }   
+        return increment; // return the inner function
+   }
+   const counter1 = createCounter();
+   const counter2 = createCounter();
+   console.log(counter1()); // Output: 1
+   console.log(counter2()); // Output: 1
+   onsole.log(counter1()); // Output: 2
+
+  // example 2 memoization
+
+  function memoize(expensiveFunction){
+    const cache = {}; // object to store cached results
+    return function memoizedFunction(number){
+        if(cache[number]){
+            return cache[number]; // return cached result if available
+        }
+        cache[number]=expensiveFunction(number); // compute and store result in cache
+        return cache[number];            
+    }
+  }
+
+  function factorial(n){
+    // an expensive computation
+    if(n===0) return 1;
+    return n*factorial(n-1);
+  }
+
+  const memoizedFactorial = memoize(factorial);
+  memoizedFactorial(10); // computes and caches result
+  memoizedFactorial(5); // computes and caches result
+  memoizedFactorial(10); // retrieves result from cache
+
+  
+  // example 3 accidentally creating closures that hold onto large objects in memory
+  
+  function createUserManager(userId){
+    const userData= fetchAllUsers(); //this will retrieve a lot of data 
+    const user = userData.find(user => user.id === userId);
+    return{
+        update: info => Object.assign(user,info),
+        retrieve: ()=>({...user}),
+    }
+  }
+  const userManager = createUserManager("123sfaer"); // the whole userData remains in memory because of the closures created for update and retrieve methods
+
+
+
+  </script>

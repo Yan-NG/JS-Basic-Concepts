@@ -100,3 +100,24 @@ fetchData();
 // async: marks a function that returns a Promise. await pauses execution of the async function until the awaited Promise settles, resuming with the fulfilled value or throwing if rejected.
 // await: pauses the async function and hands control back to the event loop, queuing the remaining execution as a microtask; it does not block the thread.
 
+// Example with try catch 
+
+async function loadUserAndPosts(userId) {
+  try {
+    const user = await fetchJson(`/api/users/${userId}`);
+    const posts = await fetchJson(`/api/users/${userId}/posts`);
+    return { user, posts };
+  } catch (err) {
+    // local recovery or rethrow for upstream handling
+    console.error('failed to load', err);
+    throw err;
+  }
+}
+
+// Concurrent fetching with async/await
+async function loadAll(ids) {
+  const promises = ids.map(id => fetchJson(`/api/${id}`));
+  const results = await Promise.all(promises); // concurrent
+  return results;
+}
+

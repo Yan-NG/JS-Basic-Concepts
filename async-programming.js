@@ -121,3 +121,11 @@ async function loadAll(ids) {
   return results;
 }
 
+//The Promise.all() static method takes an iterable of promises as input and returns a single Promise. This returned promise fulfills when all of the input's promises fulfill, with an array of the fulfillment values.
+//It rejects when any of the input's promises rejects, with this first rejection reason.
+
+//Promise.allSettled() Takes an iterable of promises as input and returns a single Promise. This returned promise fulfills when all of the input's promises settle (including when an empty iterable is passed), with an array of objects that describe the outcome of each promise.
+
+//Promise.resolve() Returns a Promise object that is resolved with the given value. If the value is a thenable (i.e., has a then method), the returned promise will "follow" that thenable, adopting its eventual state; otherwise, the returned promise will be fulfilled with the value.
+
+//Promise.race() Takes an iterable of promises as input and returns a single Promise. This returned promise settles with the eventual state of the first promise that settles.

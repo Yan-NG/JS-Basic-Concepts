@@ -33,14 +33,6 @@ console.log(`Character at index 5: '${charAtIndex5}'`);
 let charAtIndex7 = str.charAt(7);
 console.log(`Character at index 7: '${charAtIndex7}'`);
 
-//codePointAt()
-let codePointAtIndex1 = str.codePointAt(1);
-console.log(`Code point at index 1: ${codePointAtIndex1}`);
-
-//charCodeAt()
-let charCodeAtIndex2 = str.charCodeAt(2);
-console.log(`Char code at index 2: ${charCodeAtIndex2}`);
-
 //concat()
 let concatenatedStr = str.concat(" Let's learn more!");
 console.log(`Concatenated String: '${concatenatedStr}'`);
